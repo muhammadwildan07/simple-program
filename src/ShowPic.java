@@ -5,9 +5,41 @@ public class ShowPic {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Masukkan nilai ganjil: ");
-        int variable = getValidInput();
-        print(variable);
+
+        System.out.println("SELAMAT DATANG");
+        extracted();
+
+
+    }
+
+    private static void extracted() {
+        System.out.println("""
+                tentukan pilihan anda :
+                \t 1. lanjutkan.\s
+                \t 2. keluar\s
+                """);
+        int pilihan = scanner.nextInt();
+        extracted(pilihan);
+    }
+
+    private static void extracted(int pilihan) {
+        switch (pilihan) {
+            case 1 -> {
+                System.out.println("Masukkan nilai ganjil: ");
+                int variable = getValidInput();
+                print(variable);
+            }
+            case 2 -> {
+                System.out.println("Good Bye");
+                System.exit(1);
+            }
+//            TODO : make this code not causing exit
+            default -> {
+                System.out.println("Masukkan pilihan yang sesuai :");
+                int pilihan1 = scanner.nextInt();
+                extracted(pilihan1);
+            }
+        }
     }
 
     public static int getValidInput() {
@@ -56,5 +88,6 @@ public class ShowPic {
                 }
             }
         }
+        extracted();
     }
 }
