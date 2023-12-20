@@ -1,20 +1,36 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ShowPic {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Masukan nilai ganjil: ");
-        int val = scanner.nextInt();
+        System.out.println("Masukkan nilai ganjil: ");
+        int variable = getValidInput();
+        print(variable);
+    }
 
-        print(val);
+    public static int getValidInput() {
+        int val = 0;
+        boolean isValidInput = false;
 
+        while (!isValidInput) {
+            try {
+                val = scanner.nextInt();
+                isValidInput = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Input harus berupa bilangan bulat. Silakan coba lagi.");
+                scanner.next(); // Menghapus buffer input yang tidak valid
+            }
+        }
+
+        return val;
     }
 
     public static void print(int value) {
         if (value % 2 == 0) {
-            System.out.println("Mohon masukan nilai ganjil: ");
-            int val = scanner.nextInt();
+            System.out.println("Mohon masukkan nilai ganjil: ");
+            int val = getValidInput();
             print(val);
         } else {
             System.out.println(" --- panjang --- ");
